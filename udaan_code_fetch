@@ -1,0 +1,35 @@
+import requests,json
+l,l1,g,m,b=[],[],[],[],[]
+link = "https://newsapi.org/v2/top-headlines?apiKey=cd1db87dec794c2288c915ba6abeee94&country=in"
+f = requests.get(link)
+#print(f.text)
+j = json.loads(str(f.text))
+l=j['articles']
+for i in range(len(l)):
+  l1.append(l[i]['title'])
+print("Enter the value to be searched")
+se=input().lower()
+for i in l1:
+  t=list(map(str,i.split()))
+  for n in range(len(t)):
+    s=t[n].lower()
+    for j in range(len(s)):
+      if s[j]==se[0]:
+        if s[j:j+len(se)]==se:
+          if j==0 and n==0:
+            g.append(i)
+            break
+          elif j==0 and n!=0:
+            m.append(i)
+            break
+          else:
+            b.append(i)
+            break
+print("Good results: ",g)
+print("Medium Results: ",m)
+print("Bad Results: ",b)
+
+
+    
+
+    
